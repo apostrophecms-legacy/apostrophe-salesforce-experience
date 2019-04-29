@@ -1,0 +1,30 @@
+{
+  "name": "apostrophe-salesforce-experience",
+  "version": "1.0.0-alpha",
+  "scripts": {
+    "test": ""
+  },
+  "author": "P'unk Avenue LLC",
+  "main": "index.js",
+  "bugs": {
+    "url": "https://github.com/apostrophecms/apostrophe-salesforce-experience/issues"
+  },
+  "homepage": "https://github.com/apostrophecms/apostrophe-salesforce-experience#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apostrophecms/apostrophe-salesforce-experience.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "apostrophe",
+    "apostrophe-cms",
+    "salesforce"
+  ],
+  "devDependencies": {
+    "eslint-config-apostrophe": "^2.0.2"
+  },
+  "dependencies": {
+    "jsforce": "^1.9.1",
+    "lodash": "^4.17.11"
+  }
+}
