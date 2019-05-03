@@ -25,6 +25,8 @@
   },
   "dependencies": {
     "jsforce": "^1.9.1",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "passport-saml": "^1.0.0",
+    "passport-saml-metadata": "^1.6.0"
   }
 }
