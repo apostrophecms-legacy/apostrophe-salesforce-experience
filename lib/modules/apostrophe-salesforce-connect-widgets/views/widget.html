@@ -2,9 +2,12 @@
 
 {% if widget._sfUser %}
   <h2>Hello {{ widget._sfUser }}!</h2>
+  <p>
+    <a href="{{ widget._logoutUrl }}">Log out of Salesforce</a>
+  </p>
 {% else %}
   <h2>Connect</h2>
   <p>
-    <a href="{{ widget._loginUrl }}">Log In</a>
+    <a href="{{ widget._loginUrl }}">Log into Salesforce</a>
   </p>
 {% endif %}
