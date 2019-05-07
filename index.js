@@ -5,9 +5,10 @@ module.exports = {
   moogBundle: {
     directory: 'lib/modules',
     modules: [
-      // 'apostrophe-personas-areas',
-      // 'apostrophe-personas-widgets',
+      'apostrophe-salesforce-connect',
       'apostrophe-salesforce-connect-widgets'
+      // 'apostrophe-personas-areas',
+      // 'apostrophe-personas-widgets'
     ]
   },
 
