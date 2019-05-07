@@ -1,1 +1,10 @@
-<h1>Connect</h1>
+{% set widget = data.widget %}
+
+{% if widget._sfUser %}
+  <h2>Hello {{ widget._sfUser }}!</h2>
+{% else %}
+  <h2>Connect</h2>
+  <p>
+    <a href="{{ widget._loginUrl }}"></a>
+  </p>
+{% endif %}
