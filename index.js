@@ -1,4 +1,5 @@
-var _ = require('lodash');
+// const _ = require('lodash');
+const { getExperiences } = require('./query-salesforce');
 
 module.exports = {
   name: 'apostrophe-salesforce-experience',
@@ -17,7 +18,7 @@ module.exports = {
     // self.addMultiplePersonasMigration();
   },
 
-  construct: function (self, options) {
+  construct: async function (self, options) {
     // self.composePersonas = function () {
     //   _.each(self.options.personas, function (persona) {
     //     if (!persona.label) {
@@ -57,11 +58,24 @@ module.exports = {
     //   });
     // };
 
-    // self.addHelpers({
-    //   personas: function () {
-    //     return self.personas;
-    //   }
-    // });
+    if (options.experiencesQuery) {
+      let experiences = await getExperiences(options);
+
+      experiences = experiences.map(exp => {
+        return {
+          label: exp[options.experiencesLabelField],
+          value: exp[options.experiencesIdField]
+        };
+      });
+
+      self.sfExperiences = experiences;
+    }
+
+    self.addHelpers({
+      sfExperiences: function () {
+        return self.sfExperiences;
+      }
+    });
 
     // // Sniff out whether the referring URL appears to match the site.
     // // This is meant to be a tolerant implementation that won't fail to
