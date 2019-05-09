@@ -55,12 +55,12 @@ module.exports = {
         };
       });
 
-      self.sfExperiences = experiences;
+      self.experiences = experiences;
     }
 
     self.addHelpers({
-      sfExperiences: function () {
-        return self.sfExperiences;
+      experiences: function () {
+        return self.experiences;
       }
     });
 
