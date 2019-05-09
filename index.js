@@ -8,8 +8,12 @@ module.exports = {
     modules: [
       'apostrophe-salesforce-connect',
       'apostrophe-salesforce-connect-widgets'
-      // 'apostrophe-personas-areas',
-      // 'apostrophe-personas-widgets'
+      // 'apostrophe-salesforce-experience-areas',
+      // 'apostrophe-salesforce-experience-widgets'
+      // 'apostrophe-salesforce-experience-custom-pages',
+      // 'apostrophe-salesforce-experience-pages',
+      // 'apostrophe-salesforce-experience-doc-type-manager',
+      // 'apostrophe-salesforce-experience-pieces'
     ]
   },
 
