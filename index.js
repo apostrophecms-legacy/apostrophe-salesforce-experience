@@ -93,15 +93,8 @@ module.exports = {
     // self.apos.define('apostrophe-cursor', require('./lib/cursor.js'));
 
     if (options.experiencesQuery) {
-      let experiences = await getExperiences(options);
-
-      experiences = experiences.map(exp => {
-        return {
-          label: exp[options.experiencesLabelField],
-          value: exp[options.experiencesIdField]
-        };
-      });
-
+      const experiences = await getExperiences(options);
+      console.log('EXPERIENCES: ', experiences);
       self.experiences = experiences;
     }
   }

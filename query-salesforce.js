@@ -33,17 +33,28 @@ async function connectSalesforce (user, options) {
 async function getExperiences (options) {
   const conn = await connect(options);
 
-  const experiences = await conn.query(options.experiencesQuery);
+  const result = await conn.query(options.experiencesQuery);
 
-  return experiences.records;
+  const experiences = result.records.map(exp => {
+    return {
+      label: exp[options.experiencesLabelField],
+      value: exp[options.experiencesIdField]
+    };
+  });
+
+  return experiences;
 }
 
 async function getUserExperience(options) {
   const conn = await connect(options);
 
-  const experience = await conn.query(options.userExperienceQuery);
+  const result = await conn.query(options.userExperienceQuery);
 
-  return experience.records;
+  const experiences = result.map(exp => {
+    return exp[options.userExperienceId];
+  });
+
+  return experiences;
 }
 
 module.exports = {
