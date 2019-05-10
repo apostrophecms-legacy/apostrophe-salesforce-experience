@@ -49,8 +49,8 @@ async function getUserExperience(options) {
   const conn = await connect(options);
 
   const result = await conn.query(options.userExperienceQuery);
-
-  const experiences = result.map(exp => {
+  console.log(result);
+  const experiences = result.records.map(exp => {
     return exp[options.userExperienceId];
   });
 

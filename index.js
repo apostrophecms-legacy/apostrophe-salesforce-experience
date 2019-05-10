@@ -22,7 +22,7 @@ module.exports = {
     // self.addMultiplePersonasMigration();
   },
 
-  construct: async function (self, options) {
+  construct: function (self, options) {
     // self.modulesReady = function () {
     //   var workflow = self.apos.modules['apostrophe-workflow'];
     //   var inferredAll = false;
@@ -93,9 +93,11 @@ module.exports = {
     // self.apos.define('apostrophe-cursor', require('./lib/cursor.js'));
 
     if (options.experiencesQuery) {
-      const experiences = await getExperiences(options);
-      console.log('EXPERIENCES: ', experiences);
-      self.experiences = experiences;
+      getExperiences(options)
+        .then(experiences => {
+          console.log('EXPERIENCES: ', experiences);
+          self.experiences = experiences;
+        });
     }
   }
 };
