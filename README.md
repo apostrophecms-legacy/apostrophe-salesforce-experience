@@ -1,6 +1,8 @@
 # apostrophe-salesforce-experience
 Not ready for use in any sense.
 
+Currently requires Node 8+.
+
 ## TODOs
 - [X] Set up moogBundle
 - [X] Switch to SAML for authentication.
