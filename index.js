@@ -17,9 +17,14 @@ module.exports = {
     ]
   },
 
-  afterConstruct: function (self) {
-    // self.composePersonas();
-    // self.addMultiplePersonasMigration();
+  afterConstruct: function (self, callback) {
+    return self.getExperiences()
+      .then(() => {
+        return callback(null);
+      })
+      .catch(err => {
+        return callback(err);
+      });
   },
 
   construct: function (self, options) {
@@ -66,12 +71,17 @@ module.exports = {
 
     // self.apos.define('apostrophe-cursor', require('./lib/cursor.js'));
 
-    if (options.experiencesQuery) {
-      getExperiences(options)
-        .then(experiences => {
-          console.log('EXPERIENCES: ', experiences);
-          self.experiences = experiences;
-        });
-    }
+    self.getExperiences = function () {
+      if (options.experiencesQuery) {
+        return getExperiences(options)
+          .then(experiences => {
+            self.experiences = experiences;
+          }).catch(function (err) {
+            self.apos.utils.warn('⚠️ Salesforce identities query error: ', err);
+          });
+      }
+
+      return null;
+    };
   }
 };
