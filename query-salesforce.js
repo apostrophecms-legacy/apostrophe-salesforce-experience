@@ -45,13 +45,13 @@ async function getExperiences (options) {
   return experiences;
 }
 
-async function getUserExperience(options) {
+async function getUserExperience(options, id) {
   const conn = await connect(options);
 
   // TODO: The query needs to use the userId that we got back. Right now it
   // does not for the sake of testing.
-  const result = await conn.query(options.userExperienceQuery);
-
+  const result = await conn.query(`${options.userExperienceQuery}'${id}'`);
+  console.log(result);
   const experiences = result.records.map(exp => {
     return exp[options.userExperienceId];
   });
