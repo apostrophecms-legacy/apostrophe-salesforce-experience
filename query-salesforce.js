@@ -12,7 +12,7 @@ async function connect (options) {
 async function connectSalesforce (user, options) {
   try {
     const conn = await connect(options);
-
+    console.log('🧘🏻', user);
     const data = await conn.query(
       `SELECT user.FirstName, user.LastName, user.CommunityNickname FROM user WHERE user.username ='${user.username}'`
     );
