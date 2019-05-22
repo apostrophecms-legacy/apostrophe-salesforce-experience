@@ -16,16 +16,6 @@ module.exports = {
     ]
   },
 
-  afterConstruct: function (self, callback) {
-    return self.getExperiences()
-      .then(() => {
-        return callback(null);
-      })
-      .catch(err => {
-        return callback(err);
-      });
-  },
-
   construct: function (self, options) {
     self.addHelpers({
       experiences: function () {
