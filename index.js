@@ -1,5 +1,4 @@
 // const _ = require('lodash');
-const { getExperiences } = require('./query-salesforce');
 
 module.exports = {
   name: 'apostrophe-salesforce-experience',
@@ -14,16 +13,6 @@ module.exports = {
       'apostrophe-salesforce-experience-doc-type-manager',
       'apostrophe-salesforce-experience-pieces'
     ]
-  },
-
-  afterConstruct: function (self, callback) {
-    return self.getExperiences()
-      .then(() => {
-        return callback(null);
-      })
-      .catch(err => {
-        return callback(err);
-      });
   },
 
   construct: function (self, options) {
@@ -70,17 +59,26 @@ module.exports = {
 
     // self.apos.define('apostrophe-cursor', require('./lib/cursor.js'));
 
-    self.getExperiences = function () {
-      if (options.experiencesQuery) {
-        return getExperiences(options)
-          .then(experiences => {
-            self.experiences = experiences;
-          }).catch(function (err) {
-            self.apos.utils.warn('⚠️ Salesforce identities query error: ', err);
-          });
-      }
-
-      return null;
+    self.getExperienceChoices = async function() {
+      const choices = [
+        {
+          label: 'Universal',
+          value: ''
+        },
+        {
+          label: 'No Experience',
+          value: 'none'
+        }
+      ].concat(_.map(await self.getExperiences(), function (exp) {
+        return {
+          label: exp.label,
+          value: exp.value
+        };
+      }));
     };
+
+    require('./lib/browser.js')(self, options);
+    require('./lib/fieldType.js')(self, options);
+    require('./lib/getExperiences.js')(self, options);
   }
 };
