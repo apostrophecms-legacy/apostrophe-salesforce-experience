@@ -2,7 +2,7 @@
   "name": "apostrophe-salesforce-experience",
   "version": "1.1.0-alpha",
   "scripts": {
-    "test": "eslint ."
+    "test": "eslint . && mocha ./test/"
   },
   "author": "P'unk Avenue LLC",
   "main": "index.js",
@@ -21,6 +21,7 @@
     "salesforce"
   ],
   "devDependencies": {
+    "apostrophe": "^2.90.0",
     "eslint": "^5.16.0",
     "eslint-config-apostrophe": "^2.0.2",
     "eslint-config-standard": "^12.0.0",
