@@ -34,31 +34,6 @@ module.exports = {
       return req.user;
     };
 
-    // self.addMultiplePersonasMigration = function () {
-    //   self.apos.migrations.add('addMultiplePersonas', function (callback) {
-    //     return self.apos.migrations.eachWidget({}, function (doc, widget, dotPath, callback) {
-    //       if (!widget.personas) {
-    //         if (widget.persona) {
-    //           widget.personas = [widget.persona];
-    //         } else {
-    //           widget.personas = [];
-    //         }
-    //         delete widget.persona;
-    //         var update = {};
-    //         update[dotPath + '.personas'] = widget.personas;
-    //         update[dotPath + '.persona'] = null;
-    //         return self.apos.docs.db.update({
-    //           _id: doc._id
-    //         }, { $set: update }, callback);
-    //       } else {
-    //         return setImmediate(callback);
-    //       }
-    //     }, callback);
-    //   }, { safe: true });
-    // };
-
-    // self.apos.define('apostrophe-cursor', require('./lib/cursor.js'));
-
     self.getExperienceChoices = async function() {
       const choices = [
         {
