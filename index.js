@@ -1,4 +1,4 @@
-// const _ = require('lodash');
+const _ = require('lodash');
 
 module.exports = {
   name: 'apostrophe-salesforce-experience',
@@ -75,6 +75,8 @@ module.exports = {
           value: exp.value
         };
       }));
+
+      return choices;
     };
 
     require('./lib/browser.js')(self, options);
