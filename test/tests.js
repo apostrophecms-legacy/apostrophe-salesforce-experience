@@ -1,10 +1,11 @@
 const assert = require('assert');
+const fs = require('fs');
 
 describe('Salesforce Experience module', function () {
 
   let apos;
 
-  this.timeout(3000);
+  this.timeout(25000);
 
   after(function (done) {
     require('apostrophe/test-lib/util').destroy(apos, done);
@@ -23,20 +24,18 @@ describe('Salesforce Experience module', function () {
           }
         },
         'apostrophe-salesforce-experience': {},
-        'apostrophe-salesforce-connect': {
-          // A general query to get "experiences"
-          experiencesQuery: 'SELECT Name, Id FROM CollaborationGroup',
-          experiencesLabelField: 'Name',
-          experiencesIdField: 'Id',
-          // A query to get a specific user's "experience"
-          userExperienceQuery: 'SELECT CollaborationGroupId FROM CollaborationGroupMember WHERE MemberId =',
-          userExperienceId: 'CollaborationGroupId'
-        },
+        'apostrophe-salesforce-connect': {},
         'apostrophe-salesforce-connect-widgets': {}
       },
       afterInit: function (callback) {
         const sfe = apos.modules['apostrophe-salesforce-experience'];
+        const sfc = apos.modules['apostrophe-salesforce-connect'];
+        const sfcw = apos.modules['apostrophe-salesforce-connect-widgets'];
+
         assert(sfe.__meta.name === 'apostrophe-salesforce-experience');
+        assert(fs.existsSync(`${__dirname}/public/saml-metadata.xml`));
+        assert(sfc.__meta.name === 'apostrophe-salesforce-connect');
+        assert(sfcw.__meta.name === 'apostrophe-salesforce-connect-widgets');
 
         return callback(null);
       },
@@ -45,5 +44,14 @@ describe('Salesforce Experience module', function () {
         done();
       }
     });
+  });
+
+  it('should have the basic experiences', async function () {
+    const sfe = apos.modules['apostrophe-salesforce-experience'];
+    const experiences = await sfe.getExperienceChoices();
+
+    assert(experiences.length === 2);
+    assert(experiences[0].label === 'Universal');
+    assert(experiences[1].label === 'No Experience');
   });
 });
