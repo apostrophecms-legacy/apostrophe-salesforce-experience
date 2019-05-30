@@ -1,6 +1,4 @@
 locales
 data
 public
-test/lib/modules/apostrophe-salesforce-connect/connect.cer
-test/lib/modules/apostrophe-salesforce-connect/connect.key
-test/lib/modules/apostrophe-salesforce-connect/salesforce-metadata.xml
+lib/modules/apostrophe-salesforce-connect
