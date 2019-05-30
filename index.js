@@ -15,6 +15,7 @@ module.exports = {
   },
 
   construct: function (self, options) {
+    // TODO: Confirm if still necessary.
     self.addHelpers({
       experiences: function () {
         return self.experiences;
