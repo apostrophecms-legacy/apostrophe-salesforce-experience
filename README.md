@@ -4,7 +4,7 @@ This module allows you to customize an ApostropheCMS website content experience 
 
 Pages and pieces are set to match experiences in their settings modals. Widgets are set to match experiences with a drop-down multi-select field in their contextual UI.
 
-**Note:** This module does *not* enabled logging the user into the Apostrophe application as an Apostrophe user. It sets information about them in their active session, which is used to customize their Apostrophe experience. If you are looking to log the user into the Apostrophe site with a Salesforce SAML SSO, you should probably look at [apostrophe-saml](https://github.com/apostrophecms/apostrophe-saml).
+**Note:** This module does *not* enable logging the user into the Apostrophe application as an Apostrophe user. It sets information about them in their active session, which is used to customize their Apostrophe experience. If you are looking to log the user into the Apostrophe site with a Salesforce SAML SSO, you should probably look at [apostrophe-saml](https://github.com/apostrophecms/apostrophe-saml).
 
 ## Usage
 - Requires Node 8+ due to use of async/await.
@@ -23,11 +23,11 @@ openssl req -new -x509 -days 365 -nodes -sha256 -out lib/modules/apostrophe-sale
 
 ### Project configuration
 
-The bundle module requires several project-level configurations and also allows for additional optional project-level configurations to enable additional features. As with all module configuration, this is best done in the `data/local.js` file as shown below to avoid committing sensitive information to version control. The queries and other non-sensitive information could instead be configured in the `app.js` module declaration.
+The bundle module requires several project-level configurations and also allows for additional optional project-level configurations to enable additional features. A private repository can be a reasonable place for these settings, but if you do not wish some of these settings to be present in version control or you want them to vary from server to server, [you can use the `data/local.js` file](https://docs.apostrophecms.org/apostrophe/tutorials/intermediate/deployment#minifying-assets). You can also use environment variables, via `process.env.YOUR_ENV_VAR_NAME`. The queries and other non-sensitive information could instead be configured in the `app.js` module declaration.
 
 The `adminUsername`, `adminPasswordAndToken`, and `adminLoginUrl` are all required. These should relate to an admin-level user in your Salesforce instance and are used to make the initial SOQL query and subsequent user-specific queries via OAuth.
 
-`adminPasswordAndToken` is made up of both the user's password and their sercurity token, in that order, as a single string. [Salesforce has documentation on getting this token.](https://help.salesforce.com/articleView?id=user_security_token.htm&type=5) For example, with a password of `password` and token of `0a1b2c3d4e5f`, the final value would be `password0a1b2c3d4e5f`.
+`adminPasswordAndToken` is made up of both the user's password and their security token, in that order, as a single string. [Salesforce has documentation on getting this token.](https://help.salesforce.com/articleView?id=user_security_token.htm&type=5) For example, with a password of `password` and token of `0a1b2c3d4e5f`, the final value would be `password0a1b2c3d4e5f`.
 
 If the `redirectionUrl` is configured, after end users sign in on the Salesforce page, they will be redirected to the `redirectionUrl` value rather than back to the ApostropheCMS website.
 
@@ -74,7 +74,7 @@ module.exports = {
 
 ### User flow
 
-Once configured, a Salesforce account holder **with access through the connected app you created for the SAML connection** can visit the login url (`loginUrl`), which should send them to the Salesforce login page. Once they successfully sign in, they will be redirected back to the website, or to whatever `redirectionUrl` you set. They should then be logged into both Salesforce and be recognized by the Apostrophe applications. By visiting the `/auth/saml/logout` URL of the Apostrophe application they will be disconnected from the app as well as logged out from Salesforce.
+Once configured, a Salesforce account holder **with access through the connected app you created for the SAML connection** can visit the login url (`loginUrl`), which should send them to the Salesforce login page. Once they successfully sign in, they will be redirected back to the website, or to whatever `redirectionUrl` you set. The website will then be able to access their Salesforce profile, and they will also be logged into Salesforce, which is useful if you choose to redirect them there. By visiting the `/auth/saml/logout` URL of the Apostrophe application they will be disconnected from the app as well as logged out from Salesforce.
 
 With the visitor's "experiences" information now stored in their session, the website content presentation should respond to this information as expected.
 
