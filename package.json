@@ -2,7 +2,7 @@
   "name": "apostrophe-salesforce-experience",
   "version": "1.1.0-alpha",
   "scripts": {
-    "test": "eslint . && mocha ./test/"
+    "test": "eslint . && mocha"
   },
   "author": "P'unk Avenue LLC",
   "main": "index.js",
