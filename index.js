@@ -10,12 +10,12 @@ module.exports = {
       'apostrophe-salesforce-experience-areas',
       'apostrophe-salesforce-experience-widgets',
       'apostrophe-salesforce-experience-custom-pages',
-      'apostrophe-salesforce-experience-doc-type-manager',
       'apostrophe-salesforce-experience-pieces'
     ]
   },
 
   construct: function (self, options) {
+    // TODO: Confirm if still necessary.
     self.addHelpers({
       experiences: function () {
         return self.experiences;
