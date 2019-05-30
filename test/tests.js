@@ -5,7 +5,6 @@ const _ = require('lodash');
 describe('Salesforce Experience module', function () {
 
   let apos;
-  const testUserId = '0052E00000J72IP';
 
   this.timeout(25000);
 
@@ -27,12 +26,12 @@ describe('Salesforce Experience module', function () {
         },
         'apostrophe-salesforce-experience': {
           // Test are written using a real developer instance of Salesforce.
-          // adminUsername and adminPasswordAndToken are in an uncommitted
-          // `data/local.js` file for testing. Reach out to us in one of the
-          // Apostrophe support channels if you need them.
+          // adminLoginUrl, adminUsername, and adminPasswordAndToken are in an
+          // uncommitted `data/local.js` file for testing. Reach out to us in
+          // one of the Apostrophe support channels if you need them.
           // https://apostrophecms.org/support
-          // (It's a dev Salesforce instance, but better safe than sorry.)
-          adminLoginUrl: 'https://punkave-dev-ed.my.salesforce.com/',
+          // Or even better, set up your own!
+          // https://developer.salesforce.com/signup
           experienceQueries: [
             {
               soql: 'SELECT Name, Id FROM CollaborationGroup',
@@ -85,6 +84,7 @@ describe('Salesforce Experience module', function () {
 
   it('should get the test user\'s experiences', async function () {
     const sfe = apos.modules['apostrophe-salesforce-experience'];
+    const testUserId = sfe.options.testUserId;
     const userExp = await sfe.getExperiences(testUserId);
 
     assert(userExp.length === 2);
