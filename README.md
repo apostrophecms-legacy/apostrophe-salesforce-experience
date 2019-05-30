@@ -2,6 +2,8 @@
 
 This module allows you to customize an ApostropheCMS website content experience for visitors based on their Salesforce profiles in a specific Salesforce instance. The developer will write [SOQL queries](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm) to establish a set of "experiences," or Salesforce profiles. Website editors can then set specific widgets, pages, and pieces to display for a given set of those experiences.
 
+It is important to note that "experiences" can map to anything at all in Salesforce. It depends entirely on the SOQL queries you choose to use.
+
 Pages and pieces are set to match experiences in their settings modals. Widgets are set to match experiences with a drop-down multi-select field in their contextual UI.
 
 **Note:** This module does *not* enable logging the user into the Apostrophe application as an Apostrophe user. It sets information about them in their active session, which is used to customize their Apostrophe experience. If you are looking to log the user into the Apostrophe site with a Salesforce SAML SSO, you should probably look at [apostrophe-saml](https://github.com/apostrophecms/apostrophe-saml).
@@ -38,7 +40,7 @@ All properties of the `experienceQueries` object are required. Within each `expe
 - `soql`: The general query to capture names and unique IDs for "experiences."
 - `labelField`: The field in the `soql` query that returns a human-readable label for the experience.
 - `idField`: The field in the `soql` query that returns a unique ID value for the experience.
-- `userSoql`: An SOQL query that requests information about a specific user, by their account ID, with returned values that match the `labelField` and `idField` values. This should include the string `:AccountId`, which will be replaced with the actual user's account ID.
+- `userSoql`: An SOQL query that requests information about a single user, by their account ID, with returned values that match the `labelField` and `idField` values. This should include the string `:AccountId`, which will be replaced with the actual user's account ID. The query should be similar to `soql`, except that it must return only the labels and unique values for those experiences that apply to that specified user.
 - `userLabelField`: The field in the `userSoql` query that returns a value to be used as a label for the user's experience. The resulting value would likely match that from `labelField`.
 - `userIdField`: The field in the `userSoql` query that returns an ID that matches one from the general query's `idField`. This is used to match the individual account with one of the available "experiences."
 
