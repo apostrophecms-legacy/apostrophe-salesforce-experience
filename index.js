@@ -54,7 +54,6 @@ module.exports = {
       return choices;
     };
 
-    require('./lib/browser.js')(self, options);
     require('./lib/fieldType.js')(self, options);
     require('./lib/getExperiences.js')(self, options);
   }
