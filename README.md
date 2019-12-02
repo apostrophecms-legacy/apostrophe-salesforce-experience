@@ -86,4 +86,4 @@ With the visitor's "experiences" information now stored in their session, the we
 
 ## Using the OAuth connection project-level
 
-The OAuth connection to Salesforce is available to use project-level if you want to make other queries to the Salesforce instance. `self.connect` in the `apostrophe-salesforce-experience` module is an asyncronous function (`await` it) that returns the saleforce connection. With that you can use the `.query()` method on the connection to make SOQL queries. See the [jsForce documentation for more on this](https://jsforce.github.io/document/#query).
+The OAuth connection to Salesforce is available to use project-level if you want to make other queries to the Salesforce instance. `self.connect` in the `apostrophe-salesforce-experience` module is an asynchronous function (`await` it) that returns the saleforce connection. With that you can use the `.query()` method on the connection to make SOQL queries. See the [jsForce documentation for more on this](https://jsforce.github.io/document/#query).
