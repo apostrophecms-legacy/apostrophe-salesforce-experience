@@ -1,3 +1,7 @@
+# ⛔️ **DEPRECATED** — do not use for new projects
+
+See [our current docs](https://docs.apostrophecms.org/)
+
 # apostrophe-salesforce-experience
 
 This module allows you to customize an ApostropheCMS website content experience for visitors based on their Salesforce profiles in a specific Salesforce instance. The developer will write [SOQL queries](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm) to establish a set of "experiences," or Salesforce profiles. Website editors can then set specific widgets, pages, and pieces to display for a given set of those experiences.
